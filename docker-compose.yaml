@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  react:
+    container_name: react
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    image: react
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./front:/app
+    networks:
+      - main
+  nest:
+    container_name: nest
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    image: nest
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./back:/app
+    networks:
+      - main
+  postgres:
+    image: postgres:16.1-alpine3.18
+    container_name: postgres
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - main
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - main
+
+volumes:
+  postgres:
+    name: postgres-volume
+
+networks:
+  main:
