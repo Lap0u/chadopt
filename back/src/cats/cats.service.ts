@@ -7,7 +7,9 @@ export class CatsService {
   create(createCatDto: CreateCatDto) {
     return 'This action adds a new cat';
   }
-
+  fill() {
+    return 'This action fills the database with cats';
+  }
   findAll() {
     return `This action returns all cats`;
   }

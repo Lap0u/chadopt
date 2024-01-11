@@ -3,9 +3,11 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import React from 'react';
-import LoggedInPage from './components/LoggedInPage';
+import LoggedInPage from './components/CatList/CatList';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useUser } from './hooks/useUser';
+import CatList from './components/CatList/CatList';
+import Admin from './components/Admin/Admin';
 
 function App() {
   const user = useUser();
@@ -15,10 +17,18 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route
-        path="/loggedIn"
+        path="/cats"
         element={
           <ProtectedRoute user={user}>
-            <LoggedInPage />
+            <CatList />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute user={user}>
+            <Admin />
           </ProtectedRoute>
         }
       />
