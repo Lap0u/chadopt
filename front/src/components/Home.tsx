@@ -9,8 +9,8 @@ const Home = () => {
     <div className="w-screen h-screen flex flex-col gap-y-24 justify-center items-center">
       <div className="flex flex-col gap-y-4 items-center justify-center">
         <AdopteLogo />
-        <div className="text-2xl text-center w-[90%]">
-          Le site de référence pour trouver votre future boule de poile
+        <div className="text-2xl text-center w-[90%] backdrop-blur py-2	">
+          Le site de référence pour trouver votre future boule de poils
         </div>
       </div>
       <div className="flex justify-center gap-x-20 ">

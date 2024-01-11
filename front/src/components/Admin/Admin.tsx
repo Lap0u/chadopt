@@ -2,8 +2,23 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 import { fillDatabase } from '../utils/fillDatabase';
+import CatModal from '../CatModal';
+import { Cat } from '../../dto/CatDto';
 
 const Admin = () => {
+  const mock: Cat = {
+    //create a mock cat
+    id: 1,
+    name: 'test',
+    birthdate: '2021-01-01',
+    race: 'test',
+    gender: 'test',
+    city: 'test',
+    description: 'test',
+    photo: 'test',
+    adoptionStatus: 'test',
+  };
+
   const nav = useNavigate();
   // const cats = useCats()
   return (
@@ -15,6 +30,7 @@ const Admin = () => {
         <Button onClick={async () => await fillDatabase()} text="Préremplir" />
         <Button onClick={() => nav('/admin/users')} text="Ajouter" />
       </div>
+      <CatModal cat={mock} isAdmin={true} />
       {/* <CatList cats={cats} /> */}
     </div>
   );

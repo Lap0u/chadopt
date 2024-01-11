@@ -3,11 +3,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import React from 'react';
-import LoggedInPage from './components/CatList/CatList';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useUser } from './hooks/useUser';
-import CatList from './components/CatList/CatList';
 import Admin from './components/Admin/Admin';
+import Client from './components/Client/Client';
 
 function App() {
   const user = useUser();
@@ -20,7 +19,7 @@ function App() {
         path="/cats"
         element={
           <ProtectedRoute user={user}>
-            <CatList />
+            <Client />
           </ProtectedRoute>
         }
       />
