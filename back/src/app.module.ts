@@ -13,6 +13,7 @@ import { Cat } from './cats/entities/cats.entity';
   imports: [
     AuthModule,
     UsersModule,
+    CatsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.POSTGRES_HOST,
@@ -23,9 +24,8 @@ import { Cat } from './cats/entities/cats.entity';
       entities: [User, Cat],
       synchronize: true,
     }),
-    CatsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, CatsService],
+  providers: [AppService],
 })
 export class AppModule {}

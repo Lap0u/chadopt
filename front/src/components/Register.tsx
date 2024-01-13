@@ -8,21 +8,21 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const nav = useNavigate();
   const createUser = async () => {
+    alert('ll');
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-    const res = await axios.post('http://localhost:4000/auth/register', {
-      username,
-      password,
-    });
-    if (res.data.success) {
-      nav('/login');
-    } else {
-      alert(res.data.message);
+    try {
+      const res = await axios.post('http://localhost:4000/auth/register', {
+        username,
+        password,
+      });
+      alert(res);
+    } catch (err) {
+      alert('An error occured');
     }
   };
-
   return (
     <div className="w-screen h-screen flex items-center justify-center px-12">
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
