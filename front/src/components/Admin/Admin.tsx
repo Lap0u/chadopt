@@ -4,6 +4,8 @@ import Button from '../Button';
 import { fillDatabase } from '../utils/fillDatabase';
 import CatModal from '../CatModal';
 import { Cat } from '../../dto/CatDto';
+import useCats from '../../hooks/useCats';
+import CatList from '../CatList';
 
 const Admin = () => {
   const mock: Cat = {
@@ -20,7 +22,7 @@ const Admin = () => {
 
   const nav = useNavigate();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  // const cats = useCats();
+  const cats = useCats();
   return (
     <div className="relative flex flex-col h-full w-full justify-start pt-24">
       <div className="absolute top-4 right-4">
@@ -35,8 +37,7 @@ const Admin = () => {
         {isModalVisible ? (
           <CatModal cat={mock} isAdmin={true} />
         ) : (
-          // {/* <CatList cats={cats} /> */}
-          <div>list</div>
+          <CatList cats={cats} />
         )}
       </>
     </div>
