@@ -25,6 +25,11 @@ export class CatsController {
     return this.catsService.fill();
   }
 
+  @Post('empty')
+  empty() {
+    return this.catsService.empty();
+  }
+
   @Get()
   findAll() {
     return this.catsService.findAll();

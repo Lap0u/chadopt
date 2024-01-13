@@ -17,6 +17,9 @@ export class CatsService {
     }
     return this.catsRepository.save(createCatDto);
   }
+  empty() {
+    return this.catsRepository.clear();
+  }
   fill() {
     const mockCats: CreateCatDto[] = [
       {

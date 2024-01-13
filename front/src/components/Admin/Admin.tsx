@@ -6,6 +6,7 @@ import CatModal from '../CatModal';
 import { Cat } from '../../dto/CatDto';
 import useCats from '../../hooks/useCats';
 import CatList from '../CatList';
+import { emptyDatabase } from '../utils/emptyDatabse';
 
 const Admin = () => {
   const mock: Cat = {
@@ -29,6 +30,7 @@ const Admin = () => {
         <Button onClick={() => nav('/cats')} text="ClientSide" />
       </div>
       <div className="flex justify-center items-start gap-x-6 w-48 md:w-[400px] m-auto h-full">
+        <Button onClick={async () => await emptyDatabase()} text="Vider" />
         <Button onClick={async () => await fillDatabase()} text="Préremplir" />
         <Button onClick={() => setIsModalVisible(true)} text="Ajouter" />
         <Button onClick={() => setIsModalVisible(false)} text="Visualiser" />
