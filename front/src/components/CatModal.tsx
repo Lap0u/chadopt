@@ -3,6 +3,7 @@ import { Cat } from '../dto/CatDto';
 import Button from './Button';
 import MyInput from './MyInput';
 import deleteCat from './utils/deleteCat';
+import { updateCat } from './utils/updateCat';
 
 type CatModalProps = {
   cat: Cat;
@@ -36,6 +37,7 @@ const CatModal: React.FC<CatModalProps> = ({
       photo,
       adoptionStatus,
     };
+    updateCat(updatedCat);
   };
   const handleDeleteCat = () => {
     deleteCat(cat.id);
