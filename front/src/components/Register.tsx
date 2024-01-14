@@ -8,7 +8,6 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const nav = useNavigate();
   const createUser = async () => {
-    alert('ll');
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
@@ -18,7 +17,7 @@ const Register = () => {
         username,
         password,
       });
-      alert(res);
+      alert(res.data);
     } catch (err) {
       alert('An error occured');
     }
@@ -30,7 +29,9 @@ const Register = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Register your account
           </h1>
-          <form className="space-y-4 md:space-y-6" onSubmit={createUser}>
+          <form
+            className="space-y-4 md:space-y-6"
+            onSubmit={() => createUser()}>
             <div>
               <label
                 htmlFor="username"

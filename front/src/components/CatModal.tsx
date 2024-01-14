@@ -6,9 +6,14 @@ import MyInput from './MyInput';
 type CatModalProps = {
   cat: Cat;
   isAdmin?: boolean;
+  closeModal?: () => void;
 };
 
-const CatModal: React.FC<CatModalProps> = ({ cat, isAdmin = false }) => {
+const CatModal: React.FC<CatModalProps> = ({
+  cat,
+  isAdmin = false,
+  closeModal = null,
+}) => {
   const [name, setName] = useState(cat.name);
   const [birthdate, setBirthdate] = useState(cat.birthdate);
   const [race, setRace] = useState(cat.race);
@@ -33,8 +38,8 @@ const CatModal: React.FC<CatModalProps> = ({ cat, isAdmin = false }) => {
   };
 
   return (
-    <div className="relative top-20 m-4 p-5 border w-auto shadow-lg rounded-md bg-gray-800 text-white md:mx-[500px] flex flex-col items-center">
-      <div className="flex justify-evenly items-center gap-x w-full">
+    <div className="bg-gray-800 rounded-lg shadow-md p-4 h-96 w-80 flex flex-col gap-y-4 justify-center items-center mx-auto relative">
+      <div className="flex justify-center items-center gap-x w-full gap-x-4">
         <div className="md:flex flex-col">
           <div className="mb-4">
             <MyInput
@@ -46,15 +51,12 @@ const CatModal: React.FC<CatModalProps> = ({ cat, isAdmin = false }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-white text-sm font-bold mb-2">
-              Birthdate:
-            </label>
-            <input
-              type="date"
-              disabled={!isAdmin}
-              value={birthdate.toString()}
-              onChange={(e) => setBirthdate(e.target.value)}
-              className="shadow appearance-none bg-gray-800 border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+            <MyInput
+              isAdmin={isAdmin}
+              label="city"
+              value={city}
+              type="text"
+              onChange={setCity}
             />
           </div>
           <div className="mb-4">
@@ -81,21 +83,26 @@ const CatModal: React.FC<CatModalProps> = ({ cat, isAdmin = false }) => {
           <div className="mb-4">
             <MyInput
               isAdmin={isAdmin}
-              label="city"
-              value={city}
-              type="text"
-              onChange={setCity}
-            />
-          </div>
-          <div className="mb-4">
-            <MyInput
-              isAdmin={isAdmin}
               label="description"
               value={description}
               type="text"
               onChange={setDescription}
             />
           </div>
+
+          <div className="mb-4">
+            <label className="block text-white text-sm font-bold mb-2">
+              Birthdate:
+            </label>
+            <input
+              type="date"
+              disabled={!isAdmin}
+              value={birthdate.toString()}
+              onChange={(e) => setBirthdate(e.target.value)}
+              className="shadow appearance-none bg-gray-800 border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+
           <div className="mb-4">
             <MyInput
               isAdmin={isAdmin}
@@ -119,6 +126,11 @@ const CatModal: React.FC<CatModalProps> = ({ cat, isAdmin = false }) => {
       {isAdmin && (
         <div className="w-36 flex justify-center">
           <Button onClick={handleUpdateCat} text="Update" />
+        </div>
+      )}
+      {closeModal && (
+        <div className="absolute top-0 right-0">
+          <Button text="X" onClick={() => closeModal()} />
         </div>
       )}
     </div>

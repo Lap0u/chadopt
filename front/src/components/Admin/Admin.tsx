@@ -29,7 +29,7 @@ const Admin = () => {
       <div className="absolute top-4 right-4">
         <Button onClick={() => nav('/cats')} text="ClientSide" />
       </div>
-      <div className="flex justify-center items-start gap-x-6 w-48 md:w-[400px] m-auto h-full">
+      <div className="flex flex-col sm:flex-row gap-y-4 justify-center items-start gap-x-6 w-48 md:w-[400px] m-auto h-full">
         <Button onClick={async () => await emptyDatabase()} text="Vider" />
         <Button onClick={async () => await fillDatabase()} text="Préremplir" />
         <Button onClick={() => setIsModalVisible(true)} text="Ajouter" />
@@ -39,7 +39,7 @@ const Admin = () => {
         {isModalVisible ? (
           <CatModal cat={mock} isAdmin={true} />
         ) : (
-          <CatList cats={cats} />
+          <CatList cats={cats} isAdmin={true} />
         )}
       </>
     </div>

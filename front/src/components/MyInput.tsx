@@ -20,7 +20,7 @@ const MyInput: React.FC<MyInputProps> = ({
   };
 
   return (
-    <div>
+    <>
       <label className="block text-white text-sm font-bold mb-2">{label}</label>
       <input
         disabled={!isAdmin}
@@ -29,7 +29,7 @@ const MyInput: React.FC<MyInputProps> = ({
         onChange={handleChange}
         className="shadow appearance-none bg-gray-800 border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
       />
-    </div>
+    </>
   );
 };
 
