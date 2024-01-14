@@ -37,29 +37,35 @@ const CatCard = ({ cat, isAdmin }: CatCardProps) => {
           <h2 className="text-xl font-semibold text-center">{cat.name}</h2>
           <div className="w-full flex justify-evenly">
             {isLiked ? (
-              <Icon
-                className="hover:cursor-pointer"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  const newLiked = !isLiked;
-                  setIsLiked(newLiked);
-                  changeLikeStatus(cat, newLiked);
-                }}
-                icon="material-symbols-light:star"
-                style={{ fontSize: '36px' }}
-              />
+              <div className="flex justify-center gap-x-1">
+                <Icon
+                  className="hover:cursor-pointer"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    const newLiked = !isLiked;
+                    setIsLiked(newLiked);
+                    changeLikeStatus(cat, newLiked);
+                  }}
+                  icon="material-symbols-light:star"
+                  style={{ fontSize: '36px' }}
+                />
+                <div className="text-sm">{`(${cat.favorite})`}</div>
+              </div>
             ) : (
-              <Icon
-                className="hover:cursor-pointer"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  const newLiked = !isLiked;
-                  setIsLiked(newLiked);
-                  changeLikeStatus(cat, newLiked);
-                }}
-                icon="material-symbols-light:star-outline"
-                style={{ fontSize: '36px' }}
-              />
+              <div className="flex justify-center gap-x-1">
+                <Icon
+                  className="hover:cursor-pointer"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    const newLiked = !isLiked;
+                    setIsLiked(newLiked);
+                    changeLikeStatus(cat, newLiked);
+                  }}
+                  icon="material-symbols-light:star-outline"
+                  style={{ fontSize: '36px' }}
+                />
+                <div className="text-sm">{`(${cat.favorite})`}</div>
+              </div>
             )}
             {isAdoption ? (
               <Icon
