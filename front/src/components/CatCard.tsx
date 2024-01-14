@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Cat } from '../dto/CatDto';
 import CatModal from './CatModal';
+import { Icon } from '@iconify/react';
+import { changeAdoptionStatus } from './utils/changeAdoptionStatus';
+import { changeLikeStatus } from './utils/changeLikeStatus';
 
 type CatCardProps = {
   cat: Cat;
@@ -9,6 +12,8 @@ type CatCardProps = {
 
 const CatCard = ({ cat, isAdmin }: CatCardProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isAdoption, setIsAdoption] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -31,10 +36,59 @@ const CatCard = ({ cat, isAdmin }: CatCardProps) => {
           />
           <h2 className="text-xl font-semibold text-center">{cat.name}</h2>
           <div className="w-full flex justify-evenly">
-            <div>Like</div>
-            <div>Adopte</div>
+            {isLiked ? (
+              <Icon
+                className="hover:cursor-pointer"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  const newLiked = !isLiked;
+                  setIsLiked(newLiked);
+                  changeLikeStatus(cat, newLiked);
+                }}
+                icon="material-symbols-light:star"
+                style={{ fontSize: '36px' }}
+              />
+            ) : (
+              <Icon
+                className="hover:cursor-pointer"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  const newLiked = !isLiked;
+                  setIsLiked(newLiked);
+                  changeLikeStatus(cat, newLiked);
+                }}
+                icon="material-symbols-light:star-outline"
+                style={{ fontSize: '36px' }}
+              />
+            )}
+            {isAdoption ? (
+              <Icon
+                className="hover:cursor-pointer"
+                onClick={(event) => {
+                  const revAdoption = !isAdoption;
+                  event.stopPropagation();
+                  setIsAdoption(revAdoption);
+                  changeAdoptionStatus(cat, revAdoption);
+                }}
+                icon="ph:heart-fill"
+                style={{ fontSize: '36px' }}
+              />
+            ) : (
+              <Icon
+                className="hover:cursor-pointer"
+                onClick={(event) => {
+                  const revAdoption = !isAdoption;
+
+                  event.stopPropagation();
+                  setIsAdoption(revAdoption);
+                  changeAdoptionStatus(cat, revAdoption);
+                }}
+                icon="ph:heart-thin"
+                style={{ fontSize: '36px' }}
+              />
+            )}
           </div>
-          <div>Status</div>
+          <div>{cat.adoptionStatus}</div>
         </div>
       )}
     </>

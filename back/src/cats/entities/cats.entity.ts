@@ -21,6 +21,9 @@ export class Cat {
   city: string;
 
   @Column()
+  favorite: number;
+
+  @Column()
   description: string;
 
   @Column()

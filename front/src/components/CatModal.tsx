@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Cat } from '../dto/CatDto';
 import Button from './Button';
 import MyInput from './MyInput';
+import deleteCat from './utils/deleteCat';
 
 type CatModalProps = {
   cat: Cat;
@@ -36,9 +37,12 @@ const CatModal: React.FC<CatModalProps> = ({
       adoptionStatus,
     };
   };
+  const handleDeleteCat = () => {
+    deleteCat(cat.id);
+  };
 
   return (
-    <div className="bg-gray-800 rounded-lg shadow-md p-4 h-96 w-80 flex flex-col gap-y-4 justify-center items-center mx-auto relative">
+    <div className="bg-gray-800 rounded-lg shadow-md p-4 h-auto w-80 flex flex-col gap-y-4 justify-center items-center mx-auto relative">
       <div className="flex justify-center items-center gap-x w-full gap-x-4">
         <div className="md:flex flex-col">
           <div className="mb-4">
@@ -124,8 +128,9 @@ const CatModal: React.FC<CatModalProps> = ({
         </div>
       </div>
       {isAdmin && (
-        <div className="w-36 flex justify-center">
+        <div className="w-full flex justify-center gap-x-4">
           <Button onClick={handleUpdateCat} text="Update" />
+          <Button onClick={handleDeleteCat} text="Supprimer" />
         </div>
       )}
       {closeModal && (

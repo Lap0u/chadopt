@@ -7,4 +7,5 @@ export class CreateCatDto {
   description: string;
   adoptionStatus: string;
   photo?: string;
+  favorite: number;
 }

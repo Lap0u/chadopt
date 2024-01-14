@@ -30,6 +30,7 @@ export class CatsService {
         city: 'London',
         description: 'A very cute cat',
         adoptionStatus: 'Adoptable',
+        favorite: 0,
       },
       {
         name: 'plume',
@@ -39,6 +40,7 @@ export class CatsService {
         city: 'Paris',
         description: 'The cutest cat',
         adoptionStatus: 'Adoptable',
+        favorite: 3,
       },
       {
         name: 'moogly',
@@ -48,6 +50,7 @@ export class CatsService {
         city: 'New York',
         description: 'The most beautiful cat',
         adoptionStatus: 'Adoptable',
+        favorite: 1,
       },
     ];
     for (let cat of mockCats) {
@@ -59,11 +62,20 @@ export class CatsService {
     return this.catsRepository.find();
   }
 
+  findAllSort(sort: string) {
+    return this.catsRepository.find({
+      order: {
+        [sort]: 'ASC',
+      },
+    });
+  }
+
   findOne(id: number) {
     return this.catsRepository.findOneBy({ id });
   }
 
   update(id: number, updateCatDto: UpdateCatDto) {
+    console.log('patch', id, updateCatDto);
     return this.catsRepository.update(id, updateCatDto);
   }
 

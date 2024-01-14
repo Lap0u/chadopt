@@ -19,6 +19,7 @@ const Admin = () => {
     description: 'test',
     photo: 'test',
     adoptionStatus: 'test',
+    favorite: 5,
   };
 
   const nav = useNavigate();
